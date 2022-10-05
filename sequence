@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Informatique {
+
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введите последовательность, состоящую из 7 цифр 0 или 1");
+        int[] sequence = new int[7];
+        String sequenceInput = input.nextLine();
+        for (int i = 0; i < sequence.length; i ++ ) sequence[i] = Integer.valueOf(sequenceInput.substring(i, i+1));
+        int r1 = sequence[0];
+        int r2 = sequence[1];
+        int i1 = sequence[2];
+        int r3 = sequence[3];
+        int i2 = sequence[4];
+        int i3 = sequence[5];
+        int i4 = sequence[6];
+        String S, s1, s2, s3;
+        s1 = String.valueOf((r1 + i1 + i2 + i4)%2);
+        s2 = String.valueOf((r2 + i1 + i3 + i4)%2);
+        s3 = String.valueOf((r3 + i2 + i3 + i4)%2);
+        S = s1 + s2 + s3;
+        switch (S){
+            case "000":
+                System.out.println("Ошибок нет");
+                break;
+            case "001":
+                r3 = 1 - r3;
+                System.out.println("Ошибочный бит: 4");
+                break;
+            case "010":
+                r2 = 1 - r2;
+                System.out.println("Ошибочный бит: 2");
+                break;
+            case "011":
+                i3 = 1 - i3;
+                System.out.println("Ошибочный бит: 6");
+                break;
+            case "100":
+                r1 = 1 - r1;
+                System.out.println("Ошибочный бит: 1");
+                break;
+            case "101":
+                i2 = 1 - i2;
+                System.out.println("Ошибочный бит: 5");
+                break;
+            case "110":
+                i1 = 1 - i1;
+                System.out.println("Ошибочный бит: 3");
+                break;
+            case "111":
+                i4 = 1 - i4;
+                System.out.println("Ошибочный бит: 7");
+                break;
+        }
+        String rightSequence = String.valueOf(r1) + String.valueOf(r2) + String.valueOf(i1) + String.valueOf(r3) + String.valueOf(i2) + String.valueOf(i3) + String.valueOf(i4);
+        System.out.print("Правильная последовательность: ");
+        System.out.print(rightSequence);
+    }
+}
